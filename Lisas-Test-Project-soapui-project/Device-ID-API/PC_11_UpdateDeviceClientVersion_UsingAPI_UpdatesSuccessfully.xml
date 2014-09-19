@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="30411bc4-8941-4a93-bfb6-0a640e010c6b" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="PC_11_UpdateDeviceClientVersion_UsingAPI_UpdatesSuccessfully" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="30411bc4-8941-4a93-bfb6-0a640e010c6bfileName">PC_11_UpdateDeviceClientVersion_UsingAPI_UpdatesSuccessfully</con:setting></con:settings><con:testStep type="groovy" name="CreateDeviceDto" id="5f315b08-06d4-40b7-a9d2-0c66044a40d6"><con:settings/><con:config><script>import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+
+def testProject = testRunner.testCase.testSuite.project
+def testSuite = testProject.testSuites["Device ID API"]
+def testCase = testSuite.testCases["PC_11_UpdateDeviceClientVersion_UsingAPI_UpdatesSuccessfully"]
+
+
+def builder = new groovy.json.JsonBuilder()
+def modifyCustomerId = context.expand( '${#Project#ModifyCustomerId}' )
+def knownMachineId = context.expand( '${#TestSuite#KnownMachineId}' )
+def knownFriendlyName = context.expand( '${#TestSuite#KnownFriendlyName}' )
+
+def thisClientVersion = "1.0"
+
+
+builder(
+	ClientVersion: thisClientVersion,
+	CurrentClientVersion: '',
+	CurrentDeploymentVersion: '',
+	CustomerId: modifyCustomerId,
+	DeploymentVersion: '',
+	FriendlyName: knownFriendlyName,
+	MachineId: knownMachineId,
+	ReportNumberSeed: '',
+	ServerId: '',
+	Status: '',
+	)
+log.info builder.toString()
+testCase.setPropertyValue("DeviceDto", builder.toString())</script></con:config></con:testStep><con:testStep type="restrequest" name="UpdateDeviceClientVersion" id="59ec24f9-141f-46db-bb77-7f35c81dc1e1"><con:settings/><con:config service="https://developer-common-api.publicsafetyreports.com" resourcePath="/devices" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="UpdateDeviceClientVersion" id="694660b8-e989-41e2-80e6-ab6a740f1fed" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://developer-common-api.publicsafetyreports.com</con:endpoint><con:request>${#TestCase#DeviceDto}</con:request><con:originalUri>https://developer-common-api.publicsafetyreports.com/devices</con:originalUri><con:assertion type="JsonPath Match" id="574eaf35-c043-4c0d-b89a-f8d2a9ea6996" name="Match content of [ClientVersion]"><con:configuration><path>$.ClientVersion</path><content>1.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>ClientVersion</con:entry><con:entry>CurrentClientVersion</con:entry><con:entry>CustomerId</con:entry><con:entry>DeploymentVersion</con:entry><con:entry>FriendlyName</con:entry><con:entry>MachineId</con:entry><con:entry>ReportNumberSeed</con:entry><con:entry>ServerId</con:entry><con:entry>Status</con:entry><con:entry>ValidationResult</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Retrieve devices" id="a1e337df-d6bc-4465-a2c7-b9e7edd9e70e"><con:settings/><con:config service="https://developer-common-api.publicsafetyreports.com" resourcePath="/devices" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Retrieve devices" id="b9d2d75a-783d-43ce-a093-9ea784d6680d" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://developer-common-api.publicsafetyreports.com</con:endpoint><con:request/><con:originalUri>https://developer-common-api.publicsafetyreports.com/devices</con:originalUri><con:assertion type="GroovyScriptAssertion" id="2a56abcb-e26e-4cd7-bb0a-40e484e3c9bf" name="Script Assertion"><con:configuration><scriptText>import groovy.json.JsonSlurper
+
+def response = messageExchange.response.responseContent
+def devices = new JsonSlurper().parseText( response )
+
+assert(devices.$values.size() > 1)</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="CustomerId" value="${#Project#ModifyCustomerId}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties><con:property><con:name>DeviceDto</con:name><con:value>{"ClientVersion":"1.0","CurrentClientVersion":"","CurrentDeploymentVersion":"","CustomerId":"DEVIDTEST","DeploymentVersion":"","FriendlyName":"Car 5","MachineId":"12-34-56","ReportNumberSeed":"","ServerId":"","Status":""}</con:value></con:property></con:properties><con:reportParameters/></con:testCase>
