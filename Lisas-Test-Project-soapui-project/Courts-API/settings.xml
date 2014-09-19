@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="6fbf4627-1ef1-4779-9642-25a1e57d2e53" name="Courts API" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="6fbf4627-1ef1-4779-9642-25a1e57d2e53fileName">Courts-API</con:setting></con:settings><con:runType>SEQUENTIAL</con:runType><con:properties><con:property><con:name>KnownCourtListName</con:name><con:value>TESTCourts</con:value></con:property></con:properties><con:reportParameters/></con:testSuite>
