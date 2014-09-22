@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="30411bc4-8941-4a93-bfb6-0a640e010c6b" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="PC_11_UpdateDeviceClientVersion_UsingAPI_UpdatesSuccessfully" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="30411bc4-8941-4a93-bfb6-0a640e010c6bfileName">PC_11_UpdateDeviceClientVersion_UsingAPI_UpdatesSuccessfully</con:setting></con:settings><con:testStep type="groovy" name="CreateDeviceDto" id="5f315b08-06d4-40b7-a9d2-0c66044a40d6"><con:settings/><con:config><script>import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
+import com.eviware.soapui.model.testsuite.TestRunner.Status
+
+def testProject = testRunner.testCase.testSuite.project
+def testSuite = testProject.testSuites["Device ID API"]
+def testCase = testSuite.testCases["PC_11_UpdateDeviceClientVersion_UsingAPI_UpdatesSuccessfully"]
+
+
+def builder = new groovy.json.JsonBuilder()
+def modifyCustomerId = context.expand( '${#Project#ModifyCustomerId}' )
+def knownMachineId = context.expand( '${#TestSuite#KnownMachineId}' )
+def knownFriendlyName = context.expand( '${#TestSuite#KnownFriendlyName}' )
+
+def thisClientVersion = "1.0"
+
+
+builder(
+	ClientVersion: thisClientVersion,
+	CurrentClientVersion: '',
+	CurrentDeploymentVersion: '',
+	CustomerId: modifyCustomerId,
+	DeploymentVersion: '',
+	FriendlyName: knownFriendlyName,
+	MachineId: knownMachineId,
+	ReportNumberSeed: '',
+	ServerId: '',
+	Status: '',
+	)
+log.info builder.toString()
+testCase.setPropertyValue("DeviceDto", builder.toString())</script></con:config></con:testStep><con:properties><con:property><con:name>DeviceDto</con:name><con:value>{"ClientVersion":"1.0","CurrentClientVersion":"","CurrentDeploymentVersion":"","CustomerId":"DEVIDTEST","DeploymentVersion":"","FriendlyName":"Car 5","MachineId":"12-34-56","ReportNumberSeed":"","ServerId":"","Status":""}</con:value></con:property></con:properties><con:reportParameters/></con:testCase>
