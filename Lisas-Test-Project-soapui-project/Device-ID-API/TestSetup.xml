@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:testCase id="255a44a1-977b-41d9-a078-8db7fdaef843" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestSetup" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="255a44a1-977b-41d9-a078-8db7fdaef843fileName">TestSetup</con:setting></con:settings><con:testStep type="groovy" name="CreateDeviceDto" id="549afa79-08e0-4e3a-a93b-7ab41378ee09"><con:settings/><con:config><script>import groovy.json.JsonSlurper
+<con:testCase id="255a44a1-977b-41d9-a078-8db7fdaef843" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestSetup" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="255a44a1-977b-41d9-a078-8db7fdaef843fileName">TestSetup</con:setting></con:settings><con:testStep type="groovy" name="Groovy Script" id="549afa79-08e0-4e3a-a93b-7ab41378ee09"><con:settings/><con:config><script>//Device ID APi/TestSetup/GrovvyScript - v1.0
+//Comment 2 for testing
+import groovy.json.JsonSlurper
 import groovy.json.JsonBuilder
 import com.eviware.soapui.model.testsuite.TestRunner.Status
 
@@ -13,18 +15,19 @@ def modifyCustomerId = context.expand( '${#Project#ModifyCustomerId}' )
 def knownMachineId = context.expand( '${#TestSuite#KnownMachineId}' )
 def knownFriendlyName = context.expand( '${#TestSuite#KnownFriendlyName}' )
 
-
-builder(
+//COMMENT ON LINE SEVENTEEN
+builder.DeviceDto(
 	ClientVersion: '',
 	CurrentClientVersion: '',
 	CurrentDeploymentVersion: '',
-	CustomerId: modifyCustomerId,
+	CustomerId: "'"+modifyCustomerId+"'",
 	DeploymentVersion: '',
-	FriendlyName: knownFriendlyName,
-	MachineId: knownMachineId,
+	FriendlyName: "'"+knownFriendlyName+"'",
+	MachineId: "'"+knownMachineId+"'",
 	ReportNumberSeed: '',
 	ServerId: '',
 	Status: '',
+	//I expect to see THIS and Guriqbals comment on lines 1 and 2
 	)
 log.info builder.toString()
 testSuite.setPropertyValue("DeviceDto", builder.toString())</script></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase>
