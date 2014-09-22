@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<con:interface xsi:type="con:RestService" id="89b6875f-2826-43af-b01f-b89da5cf3a15" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://shit.com" type="rest" xmlns:con="http://eviware.com/soapui/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="89b6875f-2826-43af-b01f-b89da5cf3a15fileName">http%3A%2F%2Fshit.com</con:setting></con:settings><con:definitionCache/><con:endpoints><con:endpoint>http://shit.com</con:endpoint></con:endpoints></con:interface>
