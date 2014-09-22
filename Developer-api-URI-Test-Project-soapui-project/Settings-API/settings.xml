@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testSuite id="7fb4cf44-6a30-4323-8b1b-4e7067bda3ed" name="Settings API" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="7fb4cf44-6a30-4323-8b1b-4e7067bda3edfileName">Settings-API</con:setting></con:settings><con:runType>SEQUENTIAL</con:runType><con:properties/><con:reportParameters/></con:testSuite>
