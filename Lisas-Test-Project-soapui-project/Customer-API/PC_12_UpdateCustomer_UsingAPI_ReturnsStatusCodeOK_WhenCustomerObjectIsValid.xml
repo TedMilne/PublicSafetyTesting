@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="9a26f102-f91c-4c1b-a4e1-245185832d2f" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="PC_12_UpdateCustomer_UsingAPI_ReturnsStatusCodeOK_WhenCustomerObjectIsValid" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="9a26f102-f91c-4c1b-a4e1-245185832d2ffileName">PC_12_UpdateCustomer_UsingAPI_ReturnsStatusCodeOK_WhenCustomerObjectIsValid</con:setting></con:settings><con:properties/><con:reportParameters/></con:testCase>
